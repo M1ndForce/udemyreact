@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { Component } from "react";
+import Person from "./Person/Person";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+class App extends Component {
+  state = {
+    persons: [
+      { name: "Max", age: 28 },
+      { name: "Manu", age: 29 },
+      { name: "Stephanie", age: 26 },
+    ],
+  };
+  render() {
+    return (
+      <div className="App">
+        <h1> Hello world </h1>
+        <Person
+          name={this.state.persons[0].name}
+          age={this.state.persons[0].age}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          olololololo
+        </Person>
+        <Person
+          name={this.state.persons[1].name}
+          age={this.state.persons[1].age}
+        />
+        <Person
+          name={this.state.persons[2].name}
+          age={this.state.persons[2].age}
+        >
+          <h1>OLOLOLOLO HI World</h1>
+        </Person>
+        <button>Switch Name</button>
+      </div>
+    );
+  }
+  // return React.createElement(
+  // "div",
+  // null,
+  // React.createElement("h1", { className: "App" }, "Does this work now!")
+  // );
 }
 
 export default App;
