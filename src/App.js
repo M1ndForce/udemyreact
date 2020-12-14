@@ -1,7 +1,6 @@
 import "./App.css";
 import React, { Component } from "react";
 import Person from "./Person/Person";
-import { render } from "@testing-library/react";
 
 class App extends Component {
   state = {
@@ -54,9 +53,9 @@ class App extends Component {
           name={this.state.persons[2].name}
           age={this.state.persons[2].age}
         >
-          <h1>OLOLOLOLO HI World</h1>
+          HI All
         </Person>
-        <button>Switch Name</button>
+        <button onClick={this.switchNameHandler}>Switch Name</button>
       </div>
     );
 
