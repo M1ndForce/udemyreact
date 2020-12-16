@@ -11,17 +11,12 @@ class App extends Component {
       { action: false },
     ],
     otherState: "some other value",
+    showPersons: true,
   };
 
-  nameChangedHandler = (event) => {
-    this.setState({
-      persons: [
-        { name: "Max", age: 33 },
-        { name: event.target.value, age: 29 },
-        { name: "Stephanie", age: 19 },
-        { action: true },
-      ],
-    });
+  toggleList = () => {
+    const doesShow = this.state.showPersons;
+    this.setState({ showPersons: !doesShow });
   };
 
   switchNameHandler = (newName) => {
@@ -55,33 +50,35 @@ class App extends Component {
       cursor: "pointer",
     };
 
+    let persons = null;
+
+    if (this.state.showPersons) {
+      persons = (
+        <div>
+          {this.state.persons.map((person) => {
+            return (
+              <Person
+                click={this.deletePerson}
+                name={person.name}
+                age={person.age}
+              />
+            );
+          })}
+        </div>
+      );
+    }
+
     return (
       <div className="App">
         <h1> Hello world </h1>
-        <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-        >
-          olololololo
-        </Person>
-        <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-          click={() => this.switchNameHandler("MAMAMAMAMAMAMMAXIXIXIXI")}
-          changed={this.nameChangedHandler}
-        />
-        <Person
-          name={this.state.persons[2].name}
-          age={this.state.persons[2].age}
-        >
-          HI All
-        </Person>
+        {persons}
         <button
           onClick={this.switchNameHandler.bind(this, "Maximiliano")}
           style={style}
         >
           Switch Name
         </button>
+        <button onClick={this.toggleList}>Show/hide list</button>
       </div>
     );
 
